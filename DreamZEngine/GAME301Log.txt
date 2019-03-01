@@ -1,0 +1,1 @@
+[INFO]: Everything initialized fine in EngineClass in file: c:\users\alton\desktop\dream-z-engine\dreamzengine\engine\core\engineclass.cppon line: 45
