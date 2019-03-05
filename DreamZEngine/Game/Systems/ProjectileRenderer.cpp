@@ -4,18 +4,7 @@ ProjectileRenderer::ProjectileRenderer() {
 	cubeMesh = new RenderComponent();
 	cubeMesh->SetRenderType(RenderComponent::Render_Type::CUBE);
 
-	/*
-	FIX THE FOLLOWING
-	--------------------------
-	normfire		looking right
-	stalagmites		looking up
-	normEarth		looking right
-	normIce			looking right
-	iceUlt			looking up
-	normElec		looking right
-	normWind		looking right
-	*/
-
+	
 	normFire = new Model("Resources/Models/Projectiles/Fire/Projectile_F_0001.obj");
 	normFire->SetWorldScale(0.2f);
 	normFire->SetLocalRotation(0.0f, 1.0f, 0.0f, -1.57f);

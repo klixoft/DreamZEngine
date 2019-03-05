@@ -153,7 +153,6 @@
     <ClCompile Include="Engine\Main.cpp" />
     <ClCompile Include="Engine\Core\Window.cpp" />
     <ClCompile Include="Engine\Core\Timer.cpp" />
-    <ClCompile Include="Engine\Math\BoundingBox.cpp" />
     <ClCompile Include="Engine\Math\CollisionComponent.cpp" />
     <ClCompile Include="Engine\Math\CollisionDetection.CPP" />
     <ClCompile Include="Engine\Math\CollisionHandler.cpp" />
@@ -219,7 +218,6 @@
     <ClInclude Include="Engine\Graphics\Animation.h" />
     <ClInclude Include="Engine\Graphics\Bone.h" />
     <ClInclude Include="Engine\Graphics\stb_image.h" />
-    <ClInclude Include="Engine\Math\BoundingBox.h" />
     <ClInclude Include="Engine\Math\CollisionComponent.h" />
     <ClInclude Include="Engine\Math\CollisionDetection.h" />
     <ClInclude Include="Engine\Math\CollisionHandler.h" />

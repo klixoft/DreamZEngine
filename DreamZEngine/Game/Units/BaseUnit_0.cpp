@@ -2,7 +2,7 @@
 
 
 BaseUnit_0::BaseUnit_0() {
-	base = new UnitBase("Resources/Objects/nanosuit/nanosuit.obj");
+	base = new UnitBase("Resources/Objects/nanosuit/test.fbx");
 	base->SetWorldPosition(0.0f, 0.0f, 0.0f);
 	base->SetWorldScale(0.05f);
 	base->renderComponent->SetColour(0.2f, 0.7f, 0.0f);
