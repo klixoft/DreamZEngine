@@ -1,6 +1,7 @@
 #include "Projectile.h"
 
 
+
 Projectile::Projectile(glm::vec3 p, float _angle, int _dir)
 {
 	physicsComponent = new PhysicsComponent();

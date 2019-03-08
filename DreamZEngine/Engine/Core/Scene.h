@@ -5,13 +5,12 @@
 #include <SDL.h>
 #include <iostream>
 #include <vector>
-#include "../Rendering/3D/GameObject.h"
+#include "GameObject.h"
 #include "Light.h"
 #include "../Camera/Camera.h"
-//#include "../Rendering/2D/UIObject.h"
+#include "../Rendering/2D/UIObject.h"
 #include "../Rendering/3D/Skybox.h"
-//#include "../InputHandling/InputManager.h"
-
+#include "../InputHandling/InputManager.h"
 
 
 	// Base Scene Class
@@ -40,11 +39,11 @@
 				}
 			}
 
-			/*if (uiObjectList.size() != NULL) {
+			if (uiObjectList.size() != NULL) {
 				for (size_t i = 0; i < uiObjectList.size(); ++i) {
 					uiObjectList.at(i)->Update(deltaTime);
 				}
-			}*/
+			}
 		};
 		virtual void LateUpdate(const float deltaTime)
 		{
@@ -94,7 +93,7 @@
 				spotLightList.push_back(c); objectList.push_back(c);
 			}
 		};
-		//virtual void AddUIObject(UIObject* c) { uiObjectList.push_back(c); };
+		virtual void AddUIObject(UIObject* c) { uiObjectList.push_back(c); };
 		//
 		// REMOVE LIST FUNCTIONS
 		virtual void RemoveObject(GameObject* c)
@@ -126,7 +125,7 @@
 		virtual std::vector<Light*> GetDirLightList() { return dirLightList; };
 		virtual std::vector<Light*> GetPointLightList() { return pointLightList; };
 		virtual std::vector<Light*> GetSpotLightList() { return spotLightList; };
-		//virtual std::vector<UIObject*> GetUIObjectList() { return uiObjectList; };
+		virtual std::vector<UIObject*> GetUIObjectList() { return uiObjectList; };
 		virtual std::vector<Camera*> GetCameraList() { return cameraList; };
 		// SKYBOX GETTER
 		virtual Skybox* GetSkybox() { return skybox; };
@@ -137,7 +136,7 @@
 		std::vector<Light*> dirLightList;
 		std::vector<Light*> pointLightList;
 		std::vector<Light*> spotLightList;
-	//	std::vector<UIObject*> uiObjectList;
+		std::vector<UIObject*> uiObjectList;
 		std::vector<Camera*> cameraList = {
 			new Camera(glm::vec3()),
 			new Camera(glm::vec3())

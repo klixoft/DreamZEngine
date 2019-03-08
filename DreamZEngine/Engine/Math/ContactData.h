@@ -1,7 +1,7 @@
 #ifndef CONTACTDATA_H
 #define CONTACTDATA_H
 
-#include "../Rendering/3D/GameObject.h"
+#include "..\Core\GameObject.h"
 #include <glm\glm.hpp>
 
 

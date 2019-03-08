@@ -1,6 +1,7 @@
 #include "Cube.h"
 
 
+
 Cube::Cube()
 {
 	renderComponent = new RenderComponent();

@@ -2,19 +2,19 @@
 #ifndef DEMOSCENE_H
 #define DEMOSCENE_H
 
-#include "../Engine/Core/EngineClass.h"
-#include "../Engine/Core/Scene.h"
-#include "../Engine/Core/Light.h"
+#include "../../Engine/Core/EngineClass.h"
+#include "../../Engine/Core/Scene.h"
+#include "../../Engine/Core/Light.h"
 
-#include "../Engine/Rendering\3D\Cube.h"
-#include "../Engine/Rendering\3D\Projectile.h"
-#include "../Engine/Rendering\3D\Skybox.h"
-#include "../Engine/Graphics\Shader.h"
-#include "../Engine/Math\PhysicsEngine.h"
+#include "../../Engine/Rendering\3D\Cube.h"
+#include "../../Engine/Rendering\3D\Projectile.h"
+#include "../../Engine/Rendering\3D\Skybox.h"
+#include "../../Engine/Graphics\Shader.h"
+#include "../../Engine/Math\PhysicsEngine.h"
 //#include "../Engine/Rendering\2D\TextUI.h>
-#include "Systems/ProjectileManager.h"
-#include "Units/Player.h"
-#include "Units/BaseUnit_0.h"
+#include "../Systems/ProjectileManager.h"
+#include "../Units/Player.h"
+#include "../Units/BaseUnit_0.h"
 
 
 

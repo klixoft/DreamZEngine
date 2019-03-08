@@ -52,4 +52,5 @@
 		Light_Type lightType = NONE;
 	};
 
+
 #endif

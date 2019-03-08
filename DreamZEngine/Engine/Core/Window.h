@@ -11,7 +11,6 @@
 //Set up the GL3_Prototypes
 #define GL3_PROTOTYPES 1
 
-
 	class Window
 	{
 	public:

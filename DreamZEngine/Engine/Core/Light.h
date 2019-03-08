@@ -2,10 +2,9 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-#include "../Rendering/3D/GameObject.h"
+#include "GameObject.h"
 #include "LightComponent.h"
 #include "../Core/RenderComponent.h"
-
 
 
 	class Light : public GameObject

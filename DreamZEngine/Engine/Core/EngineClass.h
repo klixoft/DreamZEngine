@@ -3,18 +3,17 @@
 #define DEFAULT_BUFLEN 512
 #define DEFAULT_PORT "27015"
 
-#ifndef ENGINECLASS_H
-#define ENGINECLASS_H
+#ifndef EngineClass_H
+#define EngineClass_H
 
 #include <memory>
 #include "Window.h"
 #include "SceneManager.h"
 #include "Timer.h"
 #include "../Timers/MasterClock.h"
-//#include "InputHandling/InputManager.h"
+#include "../InputHandling/InputManager.h"
 #include "../Debuging/Settings.h"
 #include "../Debuging/Replay.h"
-
 
 
 	// SINGLETON CLASS
@@ -80,10 +79,29 @@
 		// Interpolation between fixed game loop and rendering loop
 		double interpolation;
 
-		
+		// Networking
+		WSADATA wsaData;
+		int iResult;
+		char connectedClientName[256];
+
+		SOCKET ListenSocket = INVALID_SOCKET;
+		SOCKET ClientSocket = INVALID_SOCKET;
+
+		int iSendResult;
+		char recvbuf[DEFAULT_BUFLEN];
+		int recvbuflen = DEFAULT_BUFLEN;
+
+		SOCKADDR_IN client_info = { 0 };
+		int addrsize = sizeof(client_info);
+
+		std::vector<std::string> clientTable;
+		std::string spacer = "============================================";
+
+		bool setUpNetworkAsServer();
+		bool setUpNetworkAsClient();
+		int closeNetwork();
 
 		//struct pollfd ufds[1];
 	};
-
 
 #endif

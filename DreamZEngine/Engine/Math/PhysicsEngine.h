@@ -5,7 +5,7 @@
 #include "CollisionComponent.h"
 #include "ContactData.h"
 #include <memory>
-#include "../../Engine/Rendering/3D/GameObject.h"
+#include "../../Engine/Core/GameObject.h"
 
 
 	class PhysicsEngine {

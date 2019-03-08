@@ -2,9 +2,10 @@
 #ifndef PLAYERBASE_H
 #define PLAYERBASE_H
 
-#include "../../Engine/Rendering/3D/GameObject.h"
+#include "../../Engine/Core/GameObject.h"
 #include "../../Engine/Core/RenderComponent.h"
 #include "../../Engine/Rendering/3D/Model.h"
+
 
 
 

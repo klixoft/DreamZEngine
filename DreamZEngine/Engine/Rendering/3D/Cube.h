@@ -1,7 +1,7 @@
 #ifndef CUBE_H
 #define CUBE_H
 
-#include "GameObject.h"
+#include "../../Core/GameObject.h"
 #include "../../Core/RenderComponent.h"
 #include "../../Math/CollisionComponent.h"
 #include "../../Math/PhysicsComponent.h"

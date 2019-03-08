@@ -1,6 +1,7 @@
 #include "ModelMesh.h"
 
 
+
 ModelMesh::ModelMesh(vector<VertexM> vertices, vector<unsigned int> indices, vector<Texture> textures)
 {
 	this->vertices = vertices;

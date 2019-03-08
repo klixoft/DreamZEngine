@@ -1,7 +1,7 @@
 #include "SceneManager.h"
 
 
-SceneManager::SceneManager() : currentScene(nullptr), window(nullptr), renderer(nullptr) //uiRenderer(nullptr)
+SceneManager::SceneManager() : currentScene(nullptr), window(nullptr), renderer(nullptr), uiRenderer(nullptr)
 {
 }
 
@@ -13,8 +13,8 @@ SceneManager::~SceneManager()
 	window = nullptr;
 	delete renderer;
 	renderer = nullptr;
-	/*delete uiRenderer;
-	uiRenderer = nullptr;*/
+	delete uiRenderer;
+	uiRenderer = nullptr;
 }
 
 // Starts the window, renderer, and sets a default scene with nothing in it (incase no scene is initially set)
@@ -27,8 +27,8 @@ void SceneManager::Initialize(Window* w) {
 	renderer->SetUpQuad(resolutionScale);
 	cout << "Renderer Initialized" << endl;
 
-	/*uiRenderer = new UIRenderer();
-	uiRenderer->Initialize(window);*/
+	uiRenderer = new UIRenderer();
+	uiRenderer->Initialize(window);
 	cout << "UI Renderer Initialized" << endl;
 
 	cout << "Default scene added" << endl;
@@ -162,7 +162,7 @@ void SceneManager::PostRender() {
 
 // Used to render and 2d or UI elements
 void SceneManager::Draw() {
-	//uiRenderer->Draw(window, currentScene->GetUIObjectList());
+	uiRenderer->Draw(window, currentScene->GetUIObjectList());
 }
 
 // Handles all input and also calls the current scene's HandleEvent
@@ -372,11 +372,11 @@ int SceneManager::GetWindowHeight() {
 }
 
 float SceneManager::GetScreenWidth() {
-	return window->GetWidth();
+	return uiRenderer->GetWidth();
 }
 
 float SceneManager::GetScreenHeight() {
-	return window->GetHeight();
+	return uiRenderer->GetHeight();
 }
 
 void SceneManager::DebugText(std::string string) {
@@ -402,7 +402,7 @@ void SceneManager::DebugText(glm::vec3 value) {
 }
 
 void SceneManager::DebugText(std::string string, GLfloat x, GLfloat y) {
-	//uiRenderer->DebugText(string , x, y, 0.4f, glm::vec3(0.0, 1.0f, 0.0f));
+	uiRenderer->DebugText(string , x, y, 0.4f, glm::vec3(0.0, 1.0f, 0.0f));
 }
 
 void SceneManager::DrawDebugText() {

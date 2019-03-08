@@ -23,10 +23,7 @@ bool Game1::Initialize()
 	// Set the options for the first camera
 	cameraList[0]->Position = glm::vec3(0.0f, 6.0f, 10.0f);
 	cameraList[0]->SetRotationX(-25.0f);
-	// Set the options for the second camera
-	cameraList[1]->Position = glm::vec3(0.0f, 6.0f, -10.0f);
-	cameraList[1]->SetRotationY(90.0f);
-	cameraList[1]->SetRotationX(-25.0f);
+	
 
 	// Load shaders
 	defaultShader = new Shader("Engine/Shaders/model.vs", "Engine/Shaders/model.fs");

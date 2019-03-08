@@ -6,7 +6,6 @@
 #include "../Rendering/3D/Mesh.h"
 #include "../Graphics/Shader.h"
 
-
 	class RenderComponent : public Component
 	{
 	public:

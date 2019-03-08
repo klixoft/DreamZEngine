@@ -13,7 +13,7 @@ Player::Player()
 	///AI stuff ends
 
 	// Make player parts
-	base = new UnitBase("Resources/Models/Robot_Base_Greybox/Robot_Var_002_Gurran.obj");
+	base = new UnitBase("Resources/Objects/nanosuit/nanosuit.obj");
 	base->SetWorldPosition(0.0f, 0.0f, 0.0f);
 	base->SetWorldScale(0.012f);
 	base->renderComponent->SetColour(0.2f, 0.7f, 0.0f);
@@ -35,7 +35,7 @@ Player::Player()
 
 	// Set up shader
 	projectileShader = new Shader("Engine/Shaders/model.vs", "Engine/Shaders/model.fs");
-	//pShader = BFEngine::GetInstance()->GetSceneManager()->GetRenderer()->GetShaderManager()->put(std::string("projectile"), projectileShader);
+	//pShader = EngineClass::GetInstance()->GetSceneManager()->GetRenderer()->GetShaderManager()->put(std::string("projectile"), projectileShader);
 
 	// Set direction to team 1 orientation by default
 	dir = -1;
@@ -56,8 +56,8 @@ Player::Player()
 	//playerInput = new PlayerInput();
 
 	//// Particles
-	//stunEffect = new ParticleSystem(BFEngine::GetInstance()->GetSceneManager()->GetRenderer()->GetShaderManager(), glm::vec3(1.0f, 0.5f, 1.0f));
-	//BFEngine::GetInstance()->GetSceneManager()->GetCurrentScene()->AddObject(stunEffect);
+	//stunEffect = new ParticleSystem(EngineClass::GetInstance()->GetSceneManager()->GetRenderer()->GetShaderManager(), glm::vec3(1.0f, 0.5f, 1.0f));
+	//EngineClass::GetInstance()->GetSceneManager()->GetCurrentScene()->AddObject(stunEffect);
 
 	// Set player stats
 	SetStats();
@@ -308,25 +308,10 @@ void Player::SetPlayerTeam(PLAYERTEAM pT) {
 }
 
 void Player::Hit(Projectile* projectile) {
-	/*if (shieldHealth > 0 && playerState == BLOCK && projectile->GetStrength() != PROJECTILE_STRENGTH::SPECIAL) 
-	{
-		shieldHealth -= projectile->GetDamage() * 2;
-		if (shieldHealth > 0) {
-			shield->SetWorldScale(shieldHealth / 100.0f, shieldHealth / 100.0f, 0.05f);
-		}
-	}
-	else
-	{
-		if (playerInput->CheckForController()) {
-			playerInput->PlayFeedback(projectile->GetStunTime());
-		}
+	
 		physicsComponent->AddForce(projectile->GetForce());
-		Stun(projectile->GetStunTime());
-		dialogue.playRandomFromOtherState(dialogue.TakingDamage, false);
-	}
-
-	stunEffect->Play();
-	stunEffect->SetWorldPosition(worldPosition.x, worldPosition.y + 0.5f, worldPosition.z);*/
+		
+	
 }
 
 void Player::Stun() {

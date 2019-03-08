@@ -25,7 +25,8 @@
 #include <vector>
 using namespace std;
 
-class ModelComponent : public Component
+
+	class ModelComponent : public Component
 	{
 	public:
 

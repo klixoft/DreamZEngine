@@ -5,7 +5,7 @@
 #include <SDL.h>
 #include "../../Engine/Core/EngineClass.h"
 //#include "../../Engine/Audio\PlayerDialogue.h"
-#include "../../Engine/Rendering/3D/GameObject.h"
+#include "../../Engine/Core/GameObject.h"
 #include "../../Engine/Core/RenderComponent.h"
 
 #include "../../Engine/Rendering/3D/Projectile.h"

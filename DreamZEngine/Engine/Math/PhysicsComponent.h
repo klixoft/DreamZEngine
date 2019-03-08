@@ -6,7 +6,6 @@
 #include <glm\glm.hpp>
 
 
-
 	class PhysicsComponent : public Component {
 	public:
 
@@ -120,5 +119,6 @@
 
 		Physics_Type physicsType;
 	};
+
 
 #endif

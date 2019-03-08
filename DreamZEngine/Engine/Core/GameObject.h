@@ -2,10 +2,10 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-#include "../../Graphics/Shader.h"
-//#include "ResourceManager.h"
-#include "../../Math/CollisionComponent.h"
-#include "../../Math/PhysicsComponent.h"
+#include "../Graphics/Shader.h"
+
+#include "../Math/CollisionComponent.h"
+#include "../Math/PhysicsComponent.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 

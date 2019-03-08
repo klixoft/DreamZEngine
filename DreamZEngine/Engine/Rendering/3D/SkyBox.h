@@ -2,12 +2,11 @@
 #ifndef SKYBOX_H
 #define SKYBOX_H
 
-#include "GameObject.h"
+#include "../../Core/GameObject.h"
 #include <glew.h>
 #include <SDL_image.h>
 #include <vector>
 #include <iostream>
-
 
 	class Skybox : public GameObject
 	{

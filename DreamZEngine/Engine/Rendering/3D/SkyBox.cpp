@@ -1,6 +1,7 @@
 #include "Skybox.h"
 
 
+
 Skybox::Skybox()
 {
 	LoadMesh();

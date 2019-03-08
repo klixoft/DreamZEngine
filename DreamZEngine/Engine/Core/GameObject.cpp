@@ -1,6 +1,5 @@
 #include "GameObject.h"
 
-
 GameObject::GameObject() :
 	localPosition(glm::vec3(0.0f, 0.0f, 0.0f)),
 	worldPosition(glm::vec3(0.0f, 0.0f, 0.0f)),

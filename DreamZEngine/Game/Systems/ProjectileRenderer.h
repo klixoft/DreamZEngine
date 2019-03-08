@@ -3,10 +3,13 @@
 #define PROJECTILERENDERER_H
 
 #include "../../Engine/Core/RenderComponent.h"
-#include "../../Engine/Rendering\3D/GameObject.h"
+#include "../../Engine/Core/GameObject.h"
 #include "../../Engine/Rendering\3D\Projectile.h"
 #include "../../Engine/Rendering\3D\Model.h"
 #include "../../Engine/Core/EngineClass.h"
+
+
+
 
 	// This class renders all projectiles in the scene
 	class ProjectileRenderer : public GameObject {

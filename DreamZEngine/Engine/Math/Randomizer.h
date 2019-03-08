@@ -1,7 +1,7 @@
 ﻿#ifndef RANDOMIZER_H
 #define RANDOMIZER_H
 
-class Randomizer {
+	class Randomizer {
 	private:
 		int seed;
 		long ran1idnum;

@@ -10,7 +10,6 @@
 #include <glm\glm.hpp>
 
 
-
 	class CollisionComponent : public Component {
 	public:
 

@@ -5,14 +5,13 @@
 #include "../Graphics/Shader.h" 
 #include "../Core/Window.h" 
 #include "../Core/Light.h" 
-#include "3D/GameObject.h"
-//#include "../Core/ResourceManager.h"
+#include "../Core/GameObject.h"
+
 #include "../Camera/Camera.h"
-#include "3D/SkyBox.h"
+#include "3D/Skybox.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <vector>
-
 
 	// Renders all game objects and the skybox
 	class Renderer

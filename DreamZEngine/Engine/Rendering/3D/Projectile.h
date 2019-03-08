@@ -1,7 +1,7 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include "GameObject.h"
+#include "../../Core/GameObject.h"
 #include "../../Core/RenderComponent.h"
 #include "../../Math/CollisionComponent.h"
 #include "../../Math/PhysicsComponent.h"

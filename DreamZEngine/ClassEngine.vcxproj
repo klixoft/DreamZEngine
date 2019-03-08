@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)SDK_Source\SDL\include;$(SolutionDir)SDK_Source\SDL2_mixer\include;$(SolutionDir)SDK_Source\OpenGL\include;$(SolutionDir)SDK_Source\;$(SolutionDir)SDK_Source\Extras\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)SDK_Source\SDL2_mixer\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)SDK_Source\SDL\include;$(SolutionDir)SDK_Source\SDL2_mixer\include;$(SolutionDir)SDK_Source\OpenGL\include;$(SolutionDir)SDK_Source\;$(SolutionDir)SDK_Source\freetype\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)SDK_Source\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)SDK_Source\SDL\include;$(SolutionDir)SDK_Source\OpenGL\include;$(SolutionDir)SDK_Source\;$(IncludePath)</IncludePath>
@@ -86,7 +86,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)SDK_Source\SDL\lib;$(SolutionDir)SDK_Source\OpenGL\lib;$(SolutionDir)SDK_Source\SDL2_mixer\lib\x86;$(SolutionDir)SDK_Source\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;glew32.lib;glew32s.lib;opengl32.lib;assimp-vc140-mt.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_image.lib;SDL2_mixer.lib;glew32.lib;glew32s.lib;opengl32.lib;assimp-vc140-mt.lib;AssimpConverter.lib;freetype271.lib;freetype271MT.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Core\DefaultScene.cpp" />
+    <ClCompile Include="Engine\Core\GameObject.cpp" />
     <ClCompile Include="Engine\Core\Light.cpp" />
     <ClCompile Include="Engine\Core\LightComponent.cpp" />
     <ClCompile Include="Engine\Core\Parser.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="Engine\Core\EngineClass.cpp" />
     <ClCompile Include="Engine\Graphics\Bone.cpp" />
     <ClCompile Include="Engine\Graphics\stb_image.cpp" />
+    <ClCompile Include="Engine\InputHandling\InputManager.cpp" />
     <ClCompile Include="Engine\Main.cpp" />
     <ClCompile Include="Engine\Core\Window.cpp" />
     <ClCompile Include="Engine\Core\Timer.cpp" />
@@ -159,8 +161,12 @@
     <ClCompile Include="Engine\Math\PhysicsComponent.cpp" />
     <ClCompile Include="Engine\Math\PhysicsEngine.cpp" />
     <ClCompile Include="Engine\Math\Randomizer.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\ButtonUI.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\ImageUI.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\SliderUI.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\TextUI.cpp" />
+    <ClCompile Include="Engine\Rendering\2D\UIObject.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Cube.cpp" />
-    <ClCompile Include="Engine\Rendering\3D\GameObject.cpp" />
     <ClCompile Include="Engine\Events\EventListener.cpp" />
     <ClCompile Include="Engine\Rendering\3D\ModelComponent.cpp" />
     <ClCompile Include="Engine\Rendering\3D\ModelMesh.cpp">
@@ -170,9 +176,10 @@
     <ClCompile Include="Engine\Rendering\3D\SkyBox.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Terrain.cpp" />
     <ClCompile Include="Engine\Rendering\Renderer.cpp" />
+    <ClCompile Include="Engine\Rendering\UIRenderer.cpp" />
     <ClCompile Include="Engine\Timers\Cooldown.cpp" />
     <ClCompile Include="Engine\Timers\MasterClock.cpp" />
-    <ClCompile Include="Game\Game1.cpp" />
+    <ClCompile Include="Game\Scenes\Game1.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Mesh.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Model.cpp" />
     <ClCompile Include="Engine\Graphics\ShaderHandler.cpp" />
@@ -192,10 +199,12 @@
     <ClCompile Include="Game\Units\PlayerInput.cpp" />
     <ClCompile Include="Game\Units\Player.cpp" />
     <ClCompile Include="Game\Units\BaseUnit_0.cpp" />
+    <ClCompile Include="Game\Scenes\MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\Component.h" />
     <ClInclude Include="Engine\Core\DefaultScene.h" />
+    <ClInclude Include="Engine\Core\GameObject.h" />
     <ClInclude Include="Engine\Core\Light.h" />
     <ClInclude Include="Engine\Core\LightComponent.h" />
     <ClInclude Include="Engine\Core\Parser.h" />
@@ -218,6 +227,7 @@
     <ClInclude Include="Engine\Graphics\Animation.h" />
     <ClInclude Include="Engine\Graphics\Bone.h" />
     <ClInclude Include="Engine\Graphics\stb_image.h" />
+    <ClInclude Include="Engine\InputHandling\InputManager.h" />
     <ClInclude Include="Engine\Math\CollisionComponent.h" />
     <ClInclude Include="Engine\Math\CollisionDetection.h" />
     <ClInclude Include="Engine\Math\CollisionHandler.h" />
@@ -227,8 +237,12 @@
     <ClInclude Include="Engine\Math\Randomizer.h" />
     <ClInclude Include="Engine\Math\Ray.h" />
     <ClInclude Include="Engine\Math\Volumes.h" />
+    <ClInclude Include="Engine\Rendering\2D\ButtonUI.h" />
+    <ClInclude Include="Engine\Rendering\2D\ImageUI.h" />
+    <ClInclude Include="Engine\Rendering\2D\SliderUI.h" />
+    <ClInclude Include="Engine\Rendering\2D\TextUI.h" />
+    <ClInclude Include="Engine\Rendering\2D\UIObject.h" />
     <ClInclude Include="Engine\Rendering\3D\Cube.h" />
-    <ClInclude Include="Engine\Rendering\3D\GameObject.h" />
     <ClInclude Include="Engine\Events\EventListener.h" />
     <ClInclude Include="Engine\Rendering\3D\ModelComponent.h">
       <DeploymentContent>true</DeploymentContent>
@@ -240,9 +254,10 @@
     <ClInclude Include="Engine\Rendering\3D\SkyBox.h" />
     <ClInclude Include="Engine\Rendering\3D\Terrain.h" />
     <ClInclude Include="Engine\Rendering\Renderer.h" />
+    <ClInclude Include="Engine\Rendering\UIRenderer.h" />
     <ClInclude Include="Engine\Timers\Cooldown.h" />
     <ClInclude Include="Engine\Timers\MasterClock.h" />
-    <ClInclude Include="Game\Game1.h" />
+    <ClInclude Include="Game\Scenes\Game1.h" />
     <ClInclude Include="Engine\Rendering\3D\Mesh.h" />
     <ClInclude Include="Engine\Rendering\3D\Model.h" />
     <ClInclude Include="Engine\Graphics\ShaderHandler.h" />
@@ -262,6 +277,7 @@
     <ClInclude Include="Game\Units\PlayerInput.h" />
     <ClInclude Include="Game\Units\Player.h" />
     <ClInclude Include="Game\Units\BaseUnit_0.h" />
+    <ClInclude Include="Game\Scenes\MainMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\bloom.fs" />

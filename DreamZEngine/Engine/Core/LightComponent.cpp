@@ -1,6 +1,7 @@
 #include "LightComponent.h"
 
 
+
 LightComponent::LightComponent()
 {
 	SetLightType(NONE);

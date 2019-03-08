@@ -3,12 +3,11 @@
 #define SCENEMANAGER_H
 
 #include "../Rendering/Renderer.h"
-//#include "../Rendering/UIRenderer.h"
+#include "../Rendering/UIRenderer.h"
 #include "../Debuging/Settings.h"
 #include "DefaultScene.h"
 
-
-	// This class handles game scenes, the renderer, events, and the window
+// This class handles game scenes, the renderer, events, and the window
 	class SceneManager
 	{
 	public:
@@ -127,7 +126,7 @@
 	private:
 		// SceneManager variables
 		Window* window;
-		//UIRenderer* uiRenderer;
+		UIRenderer* uiRenderer;
 		Renderer* renderer;
 		SDL_Event events;
 		bool loading = false;

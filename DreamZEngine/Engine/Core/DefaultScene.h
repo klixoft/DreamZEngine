@@ -3,7 +3,7 @@
 #define DEFAULTSCENE_H
 
 #include "Scene.h"
-//#include "../Rendering/2D/TextUI.h"
+#include "../Rendering/2D/TextUI.h"
 
 
 	class DefaultScene : public Scene
@@ -19,7 +19,7 @@
 		void HandleStates(const Uint8 *state);
 
 	private:
-	//	TextUI* text;
+		TextUI* text;
 	};
 
 #endif

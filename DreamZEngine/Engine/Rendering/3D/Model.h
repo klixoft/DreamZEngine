@@ -1,14 +1,15 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "GameObject.h"
+#include "../../Core/GameObject.h"
 #include "../../Graphics/Shader.h"
 #include "ModelComponent.h"
 #include "../../Math/CollisionComponent.h"
 #include "../../Math/PhysicsComponent.h"
 #include <iostream>
 
-class Model : public GameObject
+
+	class Model : public GameObject
 	{
 	public:
 		Model();

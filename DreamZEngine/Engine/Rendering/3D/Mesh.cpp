@@ -1,6 +1,7 @@
 #include "Mesh.h"
 
 
+
 Mesh::Mesh(std::vector<Vertex>* vertList_)
 	: VBO(0), VAO(0), vertexList(std::vector<Vertex>()) {
 

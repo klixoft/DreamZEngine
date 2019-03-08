@@ -19,8 +19,6 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-
 	struct VertexM {
 		// position
 		glm::vec3 Position;

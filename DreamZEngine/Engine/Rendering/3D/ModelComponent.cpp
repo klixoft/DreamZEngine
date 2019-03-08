@@ -1,6 +1,7 @@
 #include "ModelComponent.h"
 
 
+
 ModelComponent::ModelComponent(string const &path, bool gamma) : gammaCorrection(gamma)
 {
 	LoadModel(path);

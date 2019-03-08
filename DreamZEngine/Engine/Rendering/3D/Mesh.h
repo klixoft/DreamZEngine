@@ -7,8 +7,7 @@
 #include <SDL_image.h>
 #include "../../Graphics/Shader.h"
 
-
-	//Create a structure that defines what a vertex will have within our program
+//Create a structure that defines what a vertex will have within our program
 	//A Struct is a class-like object where all member variables and functions are public
 	//Today we will just be starting with position data for the vertext
 	//but in the future we will be adding normals and texture coordinates

@@ -1,5 +1,6 @@
 #include "Light.h"
 
+
 Light::Light()
 {
 	lightComponent = new LightComponent();

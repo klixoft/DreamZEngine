@@ -10,5 +10,4 @@
 		virtual void Render() {};
 	};
 
-
 #endif
