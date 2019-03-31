@@ -141,7 +141,7 @@
 		//SoundEffectSelector pSoundEffects;
 
 		bool PlayingIntro;
-		bool canJump = true;
+
 	protected:
 		// Player model parts
 		UnitBase* base;

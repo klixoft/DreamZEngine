@@ -29,7 +29,7 @@ std::vector<Projectile*> BaseUnit_0::LightAttack()
 	if (playerState == NORMAL && lightComboTimer <= 0) {
 		lightComboTimer = 0.3f;
 
-		Projectile* p = new Projectile(glm::vec3(GetWorldPosition().x , GetWorldPosition().y, GetWorldPosition().z - collisionComponent->GetBoundingBox().r.z * 2.0f * GetWorldScale().z * dir), -worldRotationAngle, dir);
+		Projectile* p = new Projectile(glm::vec3(GetWorldPosition().x, GetWorldPosition().y, GetWorldPosition().z - collisionComponent->GetBoundingBox().r.z * 2.0f * GetWorldScale().z * dir), targetAngle, dir);
 		p->SetImpulseForce(glm::vec3(0.0f, 0.0f, 180.0f));
 		p->SetActingForce(glm::vec3(0.0f, 0.0f, 0.0f));
 		p->SetKnockbackForce(glm::vec3(0.0f, 25.0f, 25.0f));

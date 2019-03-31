@@ -1,7 +1,7 @@
 #include "Core/EngineClass.h"
 #include "../Game/Scenes/Game1.h"
 #include "../Game/Scenes/MainMenu.h"
-#include "../Game/Scenes/UnitSelection.h"
+
 
 
 int main(int argc, char* args[])
@@ -21,8 +21,7 @@ int main(int argc, char* args[])
 	//Start Engine
 	if (EngineClass::GetInstance()->Initialize()) {
 		// Add scenes
-		EngineClass::GetInstance()->GetSceneManager()->AddScene(new MainMenu);
-		EngineClass::GetInstance()->GetSceneManager()->AddScene(new UnitSelection);
+		//EngineClass::GetInstance()->GetSceneManager()->AddScene(new MainMenu);
 		EngineClass::GetInstance()->GetSceneManager()->AddScene(new Game1);
 		EngineClass::GetInstance()->GetSceneManager()->StartScene();
 		//Game Loop
