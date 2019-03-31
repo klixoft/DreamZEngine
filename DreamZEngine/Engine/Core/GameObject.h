@@ -37,6 +37,9 @@
 		GameObject();
 		virtual ~GameObject();
 
+
+		std::string tag = "Empty Obj";
+
 		// Local getters and setters
 		// position
 		virtual void SetLocalPosition(const float &x, const float &y, const float &z);

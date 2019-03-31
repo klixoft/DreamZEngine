@@ -4,7 +4,7 @@
 #define FRONTIMGPADDINGX 0.8f
 #define FRONTIMGPADDINGY 0.8f
 
-SliderUI::SliderUI(char* imageFilePathBACK, char* imageFilePathFRONT) : value(1)
+SliderUI::SliderUI(std::string imageFilePathBACK, std::string imageFilePathFRONT) : value(1)
 {
 	imageB = new ImageUI();
 	imageB->SetName("BACK");

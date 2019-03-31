@@ -23,7 +23,7 @@ Player::Player()
 	// Initialize collision component
 	collisionComponent = new CollisionComponent();
 	collisionComponent->CreateCollisionVolume(CollisionComponent::Collision_Type::BOX, base->renderComponent->getVertexList());
-	collisionComponent->SetBoxPadding(glm::vec3(1.0f, 1.2f, 1.0f));
+	collisionComponent->SetBoxPadding(glm::vec3(0.4f, 1.2f, 0.4f));
 
 	// Initialize physics componenet
 	physicsComponent = new PhysicsComponent();
@@ -186,12 +186,12 @@ void Player::FixedUpdate(const float deltaTime) {
 	
 
 	// Update rotation
-	if (playerTeam == PLAYERTEAM::TEAM1) {
+	/*if (playerTeam == PLAYERTEAM::TEAM1) {
 		SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), -targetAngle);
 	}
 	else if (playerTeam == PLAYERTEAM::TEAM2) {
 		SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), 3.14 - targetAngle);
-	}
+	}*/
 	if (!PlayingIntro) {
 		HandleControllerEvents();
 	}
@@ -225,25 +225,25 @@ void Player::Movement(PLAYERMOVEMENT movement, const float deltaTime)
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3(physicsComponent->GetVelocity().x, physicsComponent->GetVelocity().y, (-moveSpeed * moveMod) * deltaTime * 500 * dir));
 			}
-			base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), -0.2f);
+			//base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), -0.2f);
 		}
 		if (movement == BACKWARD) {
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3(physicsComponent->GetVelocity().x, physicsComponent->GetVelocity().y, (moveSpeed * moveMod) * deltaTime * 500 * dir));
 			}
-			base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.2f);
+		//	base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.2f);
 		}
 		if (movement == RIGHT) {
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3((moveSpeed * moveMod) * deltaTime * 500 * dir, physicsComponent->GetVelocity().y, physicsComponent->GetVelocity().z));
 			}
-			base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), -0.2f);
+		//	base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), -0.2f);
 		}
 		if (movement == LEFT) {
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3((-moveSpeed * moveMod) * deltaTime * 500 * dir, physicsComponent->GetVelocity().y, physicsComponent->GetVelocity().z));
 			}
-			base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), 0.2f);
+		//	base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), 0.2f);
 		}
 	}
 }
@@ -259,18 +259,13 @@ void Player::UpdateModel(const float deltaTime)
 		ResetModel();
 	}
 
-	if (playerState == STUN) {
-	//	ring->SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), ring->GetWorldRotationAngle() - 10.0f * deltaTime);
-		base->SetWorldRotation(glm::vec3(0.0f, 1.0f, 1.0f), base->GetWorldRotationAngle() + 0.3f * deltaTime);
-	}
-
+	
 	
 }
 
 void Player::ResetModel() {
 	// Set rotations back to normal
-	base->SetLocalRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.0f);
-	base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.0f);
+
 }
 
 void Player::SetStats() {
@@ -359,8 +354,10 @@ void Player::ComboReset() {
 }
 
 void Player::Jump() {
-	if (worldPosition.y < 0.1f && worldPosition.y > -0.1f && playerState == NORMAL) {
+	if (canJump == true)
+	{
 		physicsComponent->AddForce(glm::vec3(0.0f, 110.0f, 0.0f));
+		canJump = false;
 	}
 }
 

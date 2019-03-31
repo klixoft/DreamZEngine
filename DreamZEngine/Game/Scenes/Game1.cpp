@@ -18,7 +18,7 @@ bool Game1::Initialize()
 	sceneManager->EnableSplitscreen(false);
 	sceneManager->EnableFullscreen(false);
 	sceneManager->ShowFPS(true);
-	sceneManager->CaptureMouse(true);
+	sceneManager->CaptureMouse(false);
 
 	// Set the options for the first camera
 	cameraList[0]->Position = glm::vec3(0.0f, 6.0f, 10.0f);
@@ -65,6 +65,7 @@ bool Game1::Initialize()
 	player1->SetWorldPosition(glm::vec3(-2.0f, 0.0f, 3.0f));
 	player1->SetPlayerNumber(Player::PLAYERNUMBER::PLAYER1);
 	player1->SetPlayerTeam(Player::PLAYERTEAM::TEAM1);
+	
 //	player1->GetPlayerInput()->AddAnyController();
 	player1->AddProjecitleManager(projectileManager);
 
@@ -115,40 +116,13 @@ bool Game1::Initialize()
 	floor->physicsComponent->SetMaterialType(PhysicsComponent::Material_Type::ROUGH);
 	floor->physicsComponent->SetMass(0.0f);
 
-	wall = new Cube();
-	wall->SetShader(defaultShader);
-	wall->renderComponent->SetColour(0.1f, 0.1f, 0.1f);
-	wall->physicsComponent->SetPosition(glm::vec3(5.5f, 0.0f, 0.0f));
-	wall->SetWorldScale(1.0f, 2.0f, 11.0f);
-	wall->physicsComponent->SetPhysicsType(PhysicsComponent::Physics_Type::STATIC);
-	wall->physicsComponent->SetElasticity(PhysicsComponent::Elastic_Type::PERFECT_NON_ELASTIC);
-	wall->physicsComponent->SetMaterialType(PhysicsComponent::Material_Type::ROUGH);
-	wall->physicsComponent->SetMass(0.0f);
-
-	wall1 = new Cube();
-	wall1->SetShader(defaultShader);
-	wall1->renderComponent->SetColour(0.1f, 0.1f, 0.1f);
-	wall1->physicsComponent->SetPosition(glm::vec3(-5.5f, 0.0f, 0.0f));
-	wall1->SetWorldScale(1.0f, 2.0f, 11.0f);
-	wall1->physicsComponent->SetPhysicsType(PhysicsComponent::Physics_Type::STATIC);
-	wall1->physicsComponent->SetElasticity(PhysicsComponent::Elastic_Type::PERFECT_NON_ELASTIC);
-	wall1->physicsComponent->SetMaterialType(PhysicsComponent::Material_Type::ROUGH);
-	wall1->physicsComponent->SetMass(0.0f);
-
-	middleWall = new Cube();
-	middleWall->SetShader(defaultShader);
-	middleWall->renderComponent->SetColour(1.0f, 0.0f, 0.0f);
-	middleWall->physicsComponent->SetPosition(glm::vec3(0.0f, -0.50f, 0.0f));
-	middleWall->SetWorldScale(11.0f, 0.1f, 1.0f);
-	middleWall->physicsComponent->SetPhysicsType(PhysicsComponent::Physics_Type::STATIC);
-	middleWall->physicsComponent->SetElasticity(PhysicsComponent::Elastic_Type::PERFECT_NON_ELASTIC);
-	middleWall->physicsComponent->SetMaterialType(PhysicsComponent::Material_Type::PERFECT_ROUGH);
-	middleWall->physicsComponent->SetMass(0.0f);
-
+	map = new Map1();
+	map->tag = "floor";
+	map->SetShader(defaultShader);
+	map->SetWorldPosition(glm::vec3(0.0f, -1.0f, 0.0f));
+	map->physicsComponent->SetMass(0.0f);
 	projectileManager->AddEnvironment(floor);
-	projectileManager->AddEnvironment(wall);
-	projectileManager->AddEnvironment(wall1);
-
+	
 	// Make skybox, load its textures, set properties, and give to the renderer
 	skybox = new Skybox();
 	std::vector<std::string> faces;
@@ -166,10 +140,9 @@ bool Game1::Initialize()
 	AddObject(player2);
 	AddObject(player3);
 	AddObject(player4);
-	AddObject(floor);
-	AddObject(wall);
-	AddObject(wall1);
-	AddObject(middleWall);
+//	AddObject(floor);
+	AddObject(map);
+
 	AddObject(projectileManager->GetProjectileRenderer());
 	AddLightObject(dirLight);
 	AddLightObject(pointLight);
@@ -188,18 +161,30 @@ bool Game1::Initialize()
 	playerList.push_back(player3);
 	playerList.push_back(player4);
 
+	collisionObjectList.push_back(map);
+
 	return true;
 }
 
 void Game1::Update(const float deltaTime)
 {
-	sceneManager->DebugText("Z to reload scene");
-	sceneManager->DebugText("Right Arrow Key for Light Attack");
-	sceneManager->DebugText("Press 3 times for combo");
-	sceneManager->DebugText("E for shield");
-
+//	/*cameraList[0]->Position = glm::vec3(player1->GetWorldPosition().x, player1->GetWorldPosition().y + 1, player1->GetWorldPosition().z);
+//	player1->SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), glm::radians(-cameraList[0]->Yaw));
+//*/
 	this->deltaTime = deltaTime;
-
+	for (int i = 0; i < playerList.size(); i++)
+	{
+		for (int j = 0; j < collisionObjectList.size(); j++) {
+			if (PhysicsEngine::isColliding(playerList[i]->collisionComponent, collisionObjectList[j]->collisionComponent))
+			{
+				if (playerList[i]->canJump == false && collisionObjectList[j]->tag == "floor")
+				{
+					playerList[i]->canJump = true;
+				}
+				
+			}
+		}
+	} 
 	projectileManager->Update(deltaTime);
 
 }
@@ -262,13 +247,8 @@ void Game1::HandleEvents(SDL_Event events)
 		}
 
 		if (events.key.keysym.sym == SDLK_RIGHT) {
-			std::vector<Projectile*> p = player1->HeavyAttack();
-			// Add it to the projectile manager if the returned projectile is not null
-			if (p.size() > 0) {
-				for  (Projectile* subP : p) {
-					projectileManager->AddProjectile(subP);
-				}
-			}
+			rotTest += 0.261799;
+			player1->SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), rotTest); 
 		}
 
 		if (events.key.keysym.sym == SDLK_RCTRL) {
@@ -290,6 +270,10 @@ void Game1::HandleEvents(SDL_Event events)
 		}
 	}
 
+	if (events.type == SDL_MOUSEMOTION) {
+		cameraList[0]->ProcessMouseMovement((float)events.motion.x, (float)events.motion.y);
+		//player1->UpdateModel(cameraList[0]);
+	}
 	// Call player handle events
 	// only player 1 for now to test
 	player1->HandleEvents(events);
@@ -306,6 +290,21 @@ void Game1::HandleStates(const Uint8 *state)
 	player2->HandleStates(state);
 	player3->HandleStates(state);
 	player4->HandleStates(state);
+
+
+	//movement based on camera lookat
+	/*if (state[SDL_SCANCODE_W]) {
+		player1->Movement(Player::PLAYERMOVEMENT::FORWARD, cameraList[0]);
+	}
+	if (state[SDL_SCANCODE_S]) {
+		player1->Movement(Player::PLAYERMOVEMENT::BACKWARD,  cameraList[0]);
+	}
+	if (state[SDL_SCANCODE_D]) {
+		player1->Movement(Player::PLAYERMOVEMENT::RIGHT,  cameraList[0]);
+	}
+	if (state[SDL_SCANCODE_A]) {
+		player1->Movement(Player::PLAYERMOVEMENT::LEFT,  cameraList[0]);
+	}*/
 
 	// Player movement
 	// Only player 1 for now to test

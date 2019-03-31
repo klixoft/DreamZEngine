@@ -15,7 +15,7 @@
 #include "../Systems/ProjectileManager.h"
 #include "../Units/Player.h"
 #include "../Units/BaseUnit_0.h"
-
+#include "../Objects/Map1.h"
 
 
 	class Game1 : public Scene
@@ -42,11 +42,16 @@
 		Player* player3;  //P3
 		Player* player4;  //P4
 
+
+		Map1* map;
+
 		Cube* floor;
 		Cube* wall;
 		Cube* wall1;
 		Cube* middleWall;
 
+
+		float rotTest = 0.0f;
 		// shaders
 		Shader* defaultShader;
 		Shader* skyboxShader;
@@ -63,6 +68,7 @@
 
 		// Player list
 		vector<Player*> playerList;
+		vector<GameObject*> collisionObjectList;
 
 		// other variables
 		float moveSpeed = 2;

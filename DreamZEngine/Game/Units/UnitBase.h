@@ -1,6 +1,6 @@
 #pragma once
-#ifndef PLAYERBASE_H
-#define PLAYERBASE_H
+#ifndef UNITBASE_H
+#define UNITBASE_H
 
 #include "../../Engine/Core/GameObject.h"
 #include "../../Engine/Core/RenderComponent.h"

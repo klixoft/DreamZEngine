@@ -80,6 +80,7 @@
 		};
 		// ADD LIST FUNCTIONS
 		virtual void AddObject(GameObject* c) { objectList.push_back(c); };
+		virtual void ClearObjects() { objectList.clear(); }
 		virtual void AddPhysicsObject(GameObject* c) { physicsObjectList.push_back(c); objectList.push_back(c); };
 		virtual void AddLightObject(Light* c) 
 		{ 

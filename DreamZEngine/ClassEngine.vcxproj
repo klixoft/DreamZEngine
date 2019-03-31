@@ -179,6 +179,8 @@
     <ClCompile Include="Engine\Rendering\UIRenderer.cpp" />
     <ClCompile Include="Engine\Timers\Cooldown.cpp" />
     <ClCompile Include="Engine\Timers\MasterClock.cpp" />
+    <ClCompile Include="Game\Objects\Arena.cpp" />
+    <ClCompile Include="Game\Objects\Map1.cpp" />
     <ClCompile Include="Game\Scenes\Game1.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Mesh.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Model.cpp" />
@@ -193,6 +195,7 @@
     <ClCompile Include="Engine\Core\OctSpatialPartition.cpp" />
     <ClCompile Include="Engine\Graphics\Shader.cpp" />
     <ClCompile Include="Engine\FX\LightingManager.cpp" />
+    <ClCompile Include="Game\Scenes\UnitSelection.cpp" />
     <ClCompile Include="Game\Systems\ProjectileManager.cpp" />
     <ClCompile Include="Game\Systems\ProjectileRenderer.cpp" />
     <ClCompile Include="Game\Units\UnitBase.cpp" />
@@ -257,6 +260,8 @@
     <ClInclude Include="Engine\Rendering\UIRenderer.h" />
     <ClInclude Include="Engine\Timers\Cooldown.h" />
     <ClInclude Include="Engine\Timers\MasterClock.h" />
+    <ClInclude Include="Game\Objects\Arena.h" />
+    <ClInclude Include="Game\Objects\Map1.h" />
     <ClInclude Include="Game\Scenes\Game1.h" />
     <ClInclude Include="Engine\Rendering\3D\Mesh.h" />
     <ClInclude Include="Engine\Rendering\3D\Model.h" />
@@ -271,6 +276,7 @@
     <ClInclude Include="Engine\Core\OctSpatialPartition.h" />
     <ClInclude Include="Engine\Graphics\Shader.h" />
     <ClInclude Include="Engine\FX\LightingManager.h" />
+    <ClInclude Include="Game\Scenes\UnitSelection.h" />
     <ClInclude Include="Game\Systems\ProjectileManager.h" />
     <ClInclude Include="Game\Systems\ProjectileRenderer.h" />
     <ClInclude Include="Game\Units\UnitBase.h" />

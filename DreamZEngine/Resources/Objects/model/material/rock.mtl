@@ -1,0 +1,4 @@
+newmtl rock
+map_Kd rock_d.jpg
+map_Bump rock_n.jpg
+Ns 1.2

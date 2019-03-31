@@ -11,7 +11,7 @@
 	class ButtonUI : public UIObject
 	{
 	public:
-		ButtonUI(char* imageFilePath);
+		ButtonUI(std::string imageFilePath);
 		~ButtonUI();
 
 		bool OnHover(SDL_Event events, SceneManager* sceneManager);

@@ -11,7 +11,7 @@ UnitBase::UnitBase()
 UnitBase::UnitBase(std::string path) 
 {
 	model = new Model(path, true);
-	model->SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), 1.5708f);
+	//model->SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), 1.5708f);
 
 	renderComponent = new RenderComponent();
 	renderComponent->SetRenderType(RenderComponent::Render_Type::CUBE);
