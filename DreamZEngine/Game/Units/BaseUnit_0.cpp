@@ -2,18 +2,11 @@
 
 
 BaseUnit_0::BaseUnit_0() {
-	base = new UnitBase("Resources/Objects/nanosuit/nanosuit.obj");
+	base = new ObjectBase("Resources/Objects/nanosuit/nanosuit.obj");
 	base->SetWorldPosition(0.0f, 0.0f, 0.0f);
 	base->SetWorldScale(0.05f);
 	base->renderComponent->SetColour(0.2f, 0.7f, 0.0f);
 
-//	ring->renderComponent->SetColour(0.0f, 1.0f, 0.0f);
-
-	/*shootEffect = new ParticleSystem(EngineClass::GetInstance()->GetSceneManager()->GetRenderer()->GetShaderManager(), glm::vec3(0.0f, 1.0f, 0.0f));
-	EngineClass::GetInstance()->GetSceneManager()->GetCurrentScene()->AddObject(shootEffect);
-
-	dialogue = PlayerDialogue(2);
-	dialogue.LoadPlayerDialogue("Resources/Audio/OkiCaeliAudio.txt");*/
 
 	SetStats();
 }
@@ -29,7 +22,7 @@ std::vector<Projectile*> BaseUnit_0::LightAttack()
 	if (playerState == NORMAL && lightComboTimer <= 0) {
 		lightComboTimer = 0.3f;
 
-		Projectile* p = new Projectile(glm::vec3(GetWorldPosition().x, GetWorldPosition().y, GetWorldPosition().z - collisionComponent->GetBoundingBox().r.z * 2.0f * GetWorldScale().z * dir), targetAngle, dir);
+		Projectile* p = new Projectile(glm::vec3(GetWorldPosition().x , GetWorldPosition().y+1, GetWorldPosition().z), -worldRotationAngle, dir);
 		p->SetImpulseForce(glm::vec3(0.0f, 0.0f, 180.0f));
 		p->SetActingForce(glm::vec3(0.0f, 0.0f, 0.0f));
 		p->SetKnockbackForce(glm::vec3(0.0f, 25.0f, 25.0f));

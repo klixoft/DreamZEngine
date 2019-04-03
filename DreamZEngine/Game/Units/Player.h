@@ -11,7 +11,7 @@
 #include "../../Engine/Rendering/3D/Projectile.h"
 
 #include "../Systems/ProjectileManager.h"
-#include "UnitBase.h"
+#include "../Objects/ObjectBase.h"
 #include "PlayerInput.h"
 
 
@@ -141,13 +141,11 @@
 		//SoundEffectSelector pSoundEffects;
 
 		bool PlayingIntro;
-
+		bool canJump = true;
 	protected:
 		// Player model parts
-		UnitBase* base;
-		UnitBase* ring;
-		UnitBase* shield;
-		UnitBase* marker;
+		ObjectBase* base;
+		Cube* spawnPoint;
 		bool down = false;
 
 		// Player Target

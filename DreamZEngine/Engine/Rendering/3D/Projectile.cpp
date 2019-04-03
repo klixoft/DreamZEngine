@@ -11,11 +11,11 @@ Projectile::Projectile(glm::vec3 p, float _angle, int _dir)
 	physicsComponent->SetDestructible(true);
 	physicsComponent->hasGravity = false;
 
-	glm::vec3 poop = glm::vec3(p.x + _angle * _dir, p.y, p.z);
+	glm::vec3 poop = glm::vec3(p.x , p.y, p.z);
 	SetWorldPosition(poop);
-	SetWorldScale(0.5f);
-	SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), -_angle);
-
+	SetWorldScale(0.05f);
+	//SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), _angle);
+	//SetWorldPosition(GetWorldPosition().x, GetWorldPosition().y, GetWorldPosition().z - 1);
 	dir = _dir;
 	angle = _angle;
 	impulseForce = glm::vec3(0.0f, 0.0f, 0.0f);

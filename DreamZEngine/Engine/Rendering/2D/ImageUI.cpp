@@ -4,7 +4,7 @@
 
 ImageUI::ImageUI() : width(1), height(1), colour(0.0f, 0.0f, 0.0f), alpha(1.0f)
 {
-	shader = new Shader("Shaders/image.vs", "Shaders/image.fs");
+	shader = new Shader("Engine/Shaders/image.vs", "Engine/Shaders/image.fs");
 	SetUp();
 }
 

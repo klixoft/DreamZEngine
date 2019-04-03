@@ -51,7 +51,7 @@
 		// Networking
 		std::string receiveData();
 		void sendData(std::string data);
-
+		bool GetFirstLoad() { return firstLoad; }
 
 	private:
 		// Private Constructor and Destructor so no other class can create it

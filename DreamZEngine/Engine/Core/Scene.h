@@ -80,6 +80,9 @@
 		};
 		// ADD LIST FUNCTIONS
 		virtual void AddObject(GameObject* c) { objectList.push_back(c); };
+		virtual void AddTempObject(GameObject* c) { objectList.push_back(c); };
+		virtual void ClearObjects() { tempObjectList.clear(); }
+		virtual void ClearTempObjects() { tempObjectList.clear(); }
 		virtual void AddPhysicsObject(GameObject* c) { physicsObjectList.push_back(c); objectList.push_back(c); };
 		virtual void AddLightObject(Light* c) 
 		{ 
@@ -121,6 +124,7 @@
 		};
 		// LIST GETTERS
 		virtual std::vector<GameObject*> GetObjectList() { return objectList; };
+		virtual std::vector<GameObject*> GetTempObjectList() { return tempObjectList; };
 		virtual std::vector<GameObject*> GetPhysicsObjectList() { return physicsObjectList; };
 		virtual std::vector<Light*> GetDirLightList() { return dirLightList; };
 		virtual std::vector<Light*> GetPointLightList() { return pointLightList; };
@@ -132,6 +136,7 @@
 
 	protected:
 		std::vector<GameObject*> objectList;
+		std::vector<GameObject*> tempObjectList;
 		std::vector<GameObject*> physicsObjectList;
 		std::vector<Light*> dirLightList;
 		std::vector<Light*> pointLightList;
@@ -145,6 +150,7 @@
 		float deltaTime;
 		float fixedDeltaTime;
 		double interpolation;
+		std::string title = "Default";
 	};
 
 #endif

@@ -11,7 +11,7 @@
 	class SliderUI : public UIObject
 	{
 	public:
-		SliderUI(char* imageFilePathBACK, char* imageFilePathFRONT);
+		SliderUI(std::string imageFilePathBACK, std::string imageFilePathFRONT);
 		~SliderUI();
 
 		void SetWidth(int width);

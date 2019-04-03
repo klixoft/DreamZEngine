@@ -37,6 +37,9 @@
 		GameObject();
 		virtual ~GameObject();
 
+
+		std::string tag = "Empty Obj";
+
 		// Local getters and setters
 		// position
 		virtual void SetLocalPosition(const float &x, const float &y, const float &z);
@@ -54,6 +57,9 @@
 		// angle
 		virtual float GetLocalRotationAngle() const;
 
+		glm::vec3 forwardvector = glm::vec3();
+		virtual  void SetForwardVector(float pitch,float yaw);
+		virtual glm::vec3 GetForwardVector() { return forwardvector; }
 		// World getters and setters
 		// position
 		virtual void SetWorldPosition(const float &x, const float &y, const float &z);

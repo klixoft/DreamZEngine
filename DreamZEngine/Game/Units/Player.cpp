@@ -13,7 +13,7 @@ Player::Player()
 	///AI stuff ends
 
 	// Make player parts
-	base = new UnitBase("Resources/Objects/nanosuit/nanosuit.obj");
+	base = new ObjectBase("Resources/Objects/nanosuit/nanosuit.obj");
 	base->SetWorldPosition(0.0f, 0.0f, 0.0f);
 	base->SetWorldScale(0.012f);
 	base->renderComponent->SetColour(0.2f, 0.7f, 0.0f);
@@ -23,13 +23,13 @@ Player::Player()
 	// Initialize collision component
 	collisionComponent = new CollisionComponent();
 	collisionComponent->CreateCollisionVolume(CollisionComponent::Collision_Type::BOX, base->renderComponent->getVertexList());
-	collisionComponent->SetBoxPadding(glm::vec3(1.0f, 1.2f, 1.0f));
+	collisionComponent->SetBoxPadding(glm::vec3(0.4f, 0.4f, 0.4f));
 
 	// Initialize physics componenet
 	physicsComponent = new PhysicsComponent();
 	physicsComponent->SetAcceleration(glm::vec3(0.0f, -25.0f, 0.0f));
 	physicsComponent->SetPhysicsType(PhysicsComponent::Physics_Type::DYNAMIC);
-	physicsComponent->SetElasticity(PhysicsComponent::Elastic_Type::VERY_ELASTIC);
+	physicsComponent->SetElasticity(PhysicsComponent::Elastic_Type::NON_ELASTIC);
 	physicsComponent->SetMaterialType(PhysicsComponent::Material_Type::PERFECT_SMOOTH);
 	physicsComponent->SetMass(50.0f);
 
@@ -52,14 +52,7 @@ Player::Player()
 	out = false;
 	canMove = true;
 
-	// Make player input
-	//playerInput = new PlayerInput();
-
-	//// Particles
-	//stunEffect = new ParticleSystem(EngineClass::GetInstance()->GetSceneManager()->GetRenderer()->GetShaderManager(), glm::vec3(1.0f, 0.5f, 1.0f));
-	//EngineClass::GetInstance()->GetSceneManager()->GetCurrentScene()->AddObject(stunEffect);
-
-	// Set player stats
+	
 	SetStats();
 }
 
@@ -115,63 +108,12 @@ void Player::Update(const float deltaTime)
 	}
 	//
 
-	//passive dialogue block
-
-	//switch (playerState)
-	//{
-	//case GAME::Player::NORMAL:
-	//	dialogue.setDialogueState(dialogue.Idle);
-	//	break;
-	//case GAME::Player::ATTACK:
-	//	dialogue.setDialogueState(dialogue.Idle);
-	//	break;
-	//case GAME::Player::BLOCK:
-	//	dialogue.setDialogueState(dialogue.TakingDamage);
-	//	break;
-	//case GAME::Player::STUN:
-	//	dialogue.setDialogueState(dialogue.TakingDamage);
-	//	break;
-	//case GAME::Player::JUMP:
-	//	dialogue.setDialogueState(dialogue.Moving);
-	//	break;
-	//case GAME::Player::DODGE:
-	//	break;
-	//case GAME::Player::DEAD:
-	//	break;
-	//default:
-	//	break;
-	//}
-	//if (!out) {
-	//	dialogue.playIdle(); //will play an idle sound if sound hasn't been played recently
-	//}
+	
 }
 
 void Player::FixedUpdate(const float deltaTime) {
 
-	//if (!(Settings::getInstance()->networkedGame && Settings::getInstance()->spectatorMode && !Settings::getInstance()->isServer) && !computerPlayer && (!Settings::getInstance()->replaySystemEnabled || !Settings::getInstance()->playingReplay)) {
-	//	playerInput->ParseNetworkInputs(playerInput->UpdateJoystickState());
-	//}
-	//else if (computerPlayer) {
-	//	AIMovement();
-	//	switch (playerTeam)
-	//	{
-	//	case GAME::Player::TEAM1:
-	//		BoundsCheckT1();
-	//		break;
-	//	case GAME::Player::TEAM2:
-	//		BoundsCheckT2();
-	//		break;
-	//	case GAME::Player::TEAM0:
-	//		break;
-	//	default:
-	//		break;
-	//	}
-
-	//	AIShooting();
-	//	//playerInput->DebugState();
-	//}
-
-
+	
 	// Update collision and physics
 	physicsComponent->Update(deltaTime);
 	SetWorldPosition(physicsComponent->GetPosition());
@@ -185,16 +127,6 @@ void Player::FixedUpdate(const float deltaTime) {
 	UpdateModel(deltaTime);
 	
 
-	// Update rotation
-	if (playerTeam == PLAYERTEAM::TEAM1) {
-		SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), -targetAngle);
-	}
-	else if (playerTeam == PLAYERTEAM::TEAM2) {
-		SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), 3.14 - targetAngle);
-	}
-	if (!PlayingIntro) {
-		HandleControllerEvents();
-	}
 	
 
 	// Update function from child
@@ -225,52 +157,38 @@ void Player::Movement(PLAYERMOVEMENT movement, const float deltaTime)
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3(physicsComponent->GetVelocity().x, physicsComponent->GetVelocity().y, (-moveSpeed * moveMod) * deltaTime * 500 * dir));
 			}
-			base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), -0.2f);
+			//base->SetLocalRotation(glm::vec3(1.0f, 0.0f, 0.0f), -0.12f);
 		}
 		if (movement == BACKWARD) {
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3(physicsComponent->GetVelocity().x, physicsComponent->GetVelocity().y, (moveSpeed * moveMod) * deltaTime * 500 * dir));
 			}
-			base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.2f);
+			//base->SetLocalRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.2f);
 		}
 		if (movement == RIGHT) {
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3((moveSpeed * moveMod) * deltaTime * 500 * dir, physicsComponent->GetVelocity().y, physicsComponent->GetVelocity().z));
 			}
-			base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), -0.2f);
+			//base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), -0.2f);
 		}
 		if (movement == LEFT) {
 			if (!out) {
 				physicsComponent->SetVelocity(glm::vec3((-moveSpeed * moveMod) * deltaTime * 500 * dir, physicsComponent->GetVelocity().y, physicsComponent->GetVelocity().z));
 			}
-			base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), 0.2f);
+			//base->SetLocalRotation(glm::vec3(0.0f, 0.0f, 1.0f), 0.2f);
 		}
 	}
 }
 
 void Player::UpdateModel(const float deltaTime)
 {
-	if (playerState != STUN) {
-		// Rotate Ring
-		
-
-		
-
-		ResetModel();
-	}
-
-	if (playerState == STUN) {
-	//	ring->SetWorldRotation(glm::vec3(0.0f, 1.0f, 0.0f), ring->GetWorldRotationAngle() - 10.0f * deltaTime);
-		base->SetWorldRotation(glm::vec3(0.0f, 1.0f, 1.0f), base->GetWorldRotationAngle() + 0.3f * deltaTime);
-	}
-
+	
 	
 }
 
 void Player::ResetModel() {
 	// Set rotations back to normal
-	base->SetLocalRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.0f);
-	base->SetWorldRotation(glm::vec3(1.0f, 0.0f, 0.0f), 0.0f);
+
 }
 
 void Player::SetStats() {
@@ -294,7 +212,7 @@ void Player::SetTarget(int target) {
 
 void Player::SetTargetColour(glm::vec3 colour) {
 	targetColour = colour;
-	marker->renderComponent->SetColour(targetColour.x, targetColour.y, targetColour.z);
+
 }
 
 void Player::SetPlayerTeam(PLAYERTEAM pT) {
@@ -359,8 +277,10 @@ void Player::ComboReset() {
 }
 
 void Player::Jump() {
-	if (worldPosition.y < 0.1f && worldPosition.y > -0.1f && playerState == NORMAL) {
+	if (canJump == true)
+	{
 		physicsComponent->AddForce(glm::vec3(0.0f, 110.0f, 0.0f));
+		canJump = false;
 	}
 }
 

@@ -84,6 +84,12 @@ float GameObject::GetLocalRotationAngle() const
 	return localRotationAngle;
 }
 
+void GameObject::SetForwardVector(float pitch, float yaw)
+{
+	//glm::cos(pitch)cos(yaw), cos(pitch)sin(yaw), sin(pitch))
+	forwardvector = glm::vec3(glm::cos(pitch)*glm::cos(yaw), glm::cos(pitch)*glm::sin(yaw), glm::sin(pitch));
+}
+
 // world position
 void GameObject::SetWorldPosition(const float &x, const float &y, const float &z)
 {
@@ -194,6 +200,7 @@ glm::mat4 GameObject::GetLocalModelMatrix() const {
 }
 
 void GameObject::UpdateWorldMatrix() {
+	SetForwardVector(1.0, worldRotationAngle);
 	worldModelMatrix = glm::mat4();
 	worldModelMatrix = glm::translate(worldModelMatrix, worldPosition);
 	worldModelMatrix = glm::rotate(worldModelMatrix, worldRotationAngle, worldRotation);

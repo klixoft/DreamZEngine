@@ -57,7 +57,7 @@ float UIRenderer::GetHeight() {
 
 void UIRenderer::SetUpDebugText()
 {
-	textShader = new Shader("Shaders/textshader.vs", "Shaders/textshader.fs");
+	textShader = new Shader("Engine/Shaders/textshader.vs", "Engine/Shaders/textshader.fs");
 	// FreeType
 	FT_Library ft;
 	// All functions return a value different than 0 whenever an error occurred

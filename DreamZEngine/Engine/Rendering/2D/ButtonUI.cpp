@@ -2,7 +2,7 @@
 
 
 
-ButtonUI::ButtonUI(char* imageFilePath) 
+ButtonUI::ButtonUI(std::string imageFilePath)
 {
 	paddingX = 0;
 	paddingY = 0;

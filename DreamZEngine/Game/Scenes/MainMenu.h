@@ -12,7 +12,7 @@
 #include "../../Engine/Rendering\2D\ImageUI.h"
 #include "../../Engine/Rendering\2D\ButtonUI.h"
 //#include "DemoScene.h"
-#include "Game1.h"
+#include "DreamZEngineDemo.h"
 //#include "MenuSelectScene.h"
 
 
